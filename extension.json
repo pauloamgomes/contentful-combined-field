@@ -1,0 +1,34 @@
+{
+  "id": "combined-field",
+  "name": "Combined Field",
+  "srcdoc": "./build/index.html",
+  "fieldTypes": ["Symbol", "Text"],
+  "parameters": {
+    "instance": [
+      {
+        "id": "pattern",
+        "name": "Field Pattern",
+        "description": "Use replacement tokens: [locale], [field:name], [field:reference:name], e.g. [field:title] ([field:category:title])",
+        "type": "Symbol",
+        "required": true,
+        "default": "[field:title]"
+      },
+      {
+        "id": "readonly",
+        "name": "Set to readonly",
+        "description": "Do not permit user to change field generated value",
+        "type": "Boolean",
+        "required": true,
+        "default": false
+      },
+      {
+        "id": "separator",
+        "name": "Separator",
+        "description": "If using a separator char can be used to remove the char in case of the field before the separator is missing",
+        "type": "Symbol",
+        "required": false,
+        "default": ""
+      }
+    ]
+  }
+}
