@@ -17,3 +17,7 @@ node_modules/
 
 # Coverage
 .coverage
+
+# Build
+build/*
+!/build/index.html
