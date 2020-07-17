@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
+import { format } from 'date-fns';
 //==
 import './index.css';
 
@@ -135,6 +136,8 @@ export const CombinedField = ({ sdk }: CombinedFieldProps) => {
         newParts.push(raw);
       } else if (part === 'locale') {
         newParts.push(locale);
+      } else if (part.startsWith('date:')) {
+        newParts.push(format(new Date(), part.split(':')[1]));
       } else {
         newParts.push(part);
       }

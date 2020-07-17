@@ -8,10 +8,10 @@
       {
         "id": "pattern",
         "name": "Field Pattern",
-        "description": "Use replacement tokens: [locale], [field:name], [field:reference:name], e.g. [field:title] ([field:category:title])",
+        "description": "Use replacement tokens: [locale], [field:name], [field:reference:name], [date:format], e.g. [field:title] ([field:category:title] [date:dd-mm-yyyy])",
         "type": "Symbol",
         "required": true,
-        "default": "[field:title]"
+        "default": ""
       },
       {
         "id": "readonly",

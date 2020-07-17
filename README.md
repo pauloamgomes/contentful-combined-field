@@ -31,6 +31,7 @@ The UI Extension can be installed manually from the Contentful UI following the 
 - **`[locale]`** - Will replace the token with the node locale
 - **`[field:your-field-name]`** - Will replace the token with the value of the field
 - **`[field:your-reference-field-name:field-name]`** - Will replace the token with the value of field that belongs to the reference.
+- **`[date:format]`** - Will replace the token with the date using the date-fns format (https://date-fns.org/v2.14.0/docs/format)
 
 ### Example patterns:
 
