@@ -27,7 +27,7 @@
         "description": "If using a separator char can be used to remove the char in case of the field before the separator is missing",
         "type": "Symbol",
         "required": false,
-        "default": ""
+        "default": " "
       }
     ]
   }
