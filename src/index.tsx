@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 //==
 import './index.css';
 
@@ -148,9 +148,13 @@ export const CombinedField = ({ sdk }: CombinedFieldProps) => {
       if (newParts[idx] && newParts[idx].length) {
         newValue = newValue.replace(`[${part}]`, newParts[idx]);
       } else {
-        newValue = newValue.replace(new RegExp('\\[' + part + '].*' + separator, 'g'), '');
+        newValue = newValue.replace(`[${part}]`, '');
       }
     });
+
+    if (newValue.startsWith(separator)) {
+      newValue = newValue.replace(new RegExp('^' + separator, 'g'), '');
+    }
 
     sdk.entry.fields[fieldName].setValue(newValue, locale);
   };
