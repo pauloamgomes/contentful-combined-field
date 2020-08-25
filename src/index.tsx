@@ -17,7 +17,7 @@ export const CombinedField = ({ sdk }: CombinedFieldProps) => {
 
   const fieldName = sdk.field.id;
   const instance: any = sdk.parameters.instance;
-  const { pattern, readonly, separator } = instance;
+  const { pattern, readonly, separator, lockWhenPublished } = instance;
 
   const parts: string[] = [];
 
@@ -109,10 +109,23 @@ export const CombinedField = ({ sdk }: CombinedFieldProps) => {
     return '';
   };
 
+  const isLocked = () => {
+    const sys: any = sdk.entry.getSys();
+
+    const published = !!sys.publishedVersion && sys.version == sys.publishedVersion + 1;
+    const changed = !!sys.publishedVersion && sys.version >= sys.publishedVersion + 2;
+
+    return published || changed;
+  };
+
   /**
    * Updates the field based on the defined pattern.
    */
-  const updateFieldValue = async (locale: string) => {
+  const updateFieldValue = async (locale: string, force = false) => {
+    if (!force && lockWhenPublished && isLocked() && sdk.field.getValue()) {
+      return;
+    }
+
     const defaultLocale = sdk.locales.default;
     const newParts: string[] = [];
 
@@ -184,7 +197,7 @@ export const CombinedField = ({ sdk }: CombinedFieldProps) => {
         readOnly={readonly}
         className={(readonly && 'disabled') || ''}
       />
-      {!readonly && <button onClick={() => updateFieldValue(sdk.field.locale)}>reset</button>}
+      {!readonly && <button onClick={() => updateFieldValue(sdk.field.locale, true)}>reset</button>}
     </div>
   );
 };

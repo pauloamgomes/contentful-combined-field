@@ -28,6 +28,14 @@
         "type": "Symbol",
         "required": false,
         "default": " "
+      },
+      {
+        "id": "lockWhenPublished",
+        "name": "Do not update the field if entry is published",
+        "description": "If the entry is published it will stop the field to be regenerated on every change",
+        "type": "Boolean",
+        "required": true,
+        "default": true
       }
     ]
   }
